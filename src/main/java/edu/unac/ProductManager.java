@@ -7,6 +7,7 @@ import java.util.Map;
 import java.util.stream.Collectors;
 
 public class ProductManager {
+
     private final Map<String, Product> products = new HashMap<>();
 
     public void addProduct(Product product) {
@@ -32,5 +33,10 @@ public class ProductManager {
 
     public List<Product> listAll() {
         return new ArrayList<>(products.values());
+    }
+    public List<Product> getProductsByPriceRange(double min, double max) {
+        return products.values().stream()
+                .filter(product -> product.getPrice() >= min && product.getPrice() <= max)
+                .collect(Collectors.toList());
     }
 }
